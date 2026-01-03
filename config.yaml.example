@@ -1,0 +1,47 @@
+# Verda Cloud MCP Server Configuration
+# Copy this file to config.yaml and fill in your credentials
+
+# Verda API Credentials (required)
+# Get these from: https://console.verda.com/dashboard/api
+client_id: "your-client-id-here"
+client_secret: "your-client-secret-here"
+
+# Default settings (optional - can be overridden per tool call)
+defaults:
+  # Default project name to use
+  project: "vllm-omni"
+
+  # Default GPU type for spot instances
+  gpu_type: "B300"
+
+  # Default number of GPUs (1, 2, 4, or 8)
+  gpu_count: 1
+
+  # Default datacenter location (FIN-01, FIN-02, FIN-03)
+  location: "FIN-03"
+
+  # Default volume ID to attach (get from list_volumes tool)
+  volume_id: ""
+
+  # Default volume size in GB when creating new volumes
+  volume_size: 150
+
+  # Default startup script ID (get from list_scripts tool)
+  script_id: ""
+
+  # Default OS image
+  image: "ubuntu-24.04-cuda-12.8-open-docker"
+
+  # Default hostname prefix for new instances (format: ${project}-${gpu_type})
+  hostname_prefix: "vllm-omni-B300"
+
+# Instance deployment settings
+deployment:
+  # Timeout in seconds for waiting for instance to be ready
+  ready_timeout: 600
+
+  # Polling interval in seconds
+  poll_interval: 10
+
+  # Enable spot instance by default
+  use_spot: true

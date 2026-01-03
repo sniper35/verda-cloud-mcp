@@ -1,0 +1,43 @@
+[project]
+name = "verda-cloud-mcp"
+version = "0.1.0"
+description = "MCP server for Verda Cloud GPU instance management"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.2.0",
+    "httpx>=0.27.0",
+    "pyyaml>=6.0",
+    "verda>=1.18.0",
+]
+
+[project.scripts]
+verda-mcp = "verda_mcp.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/verda_mcp"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.14.10",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
