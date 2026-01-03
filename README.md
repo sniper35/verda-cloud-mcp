@@ -154,6 +154,35 @@ deployment:
   use_spot: true      # Default to spot instances
 ```
 
+### Default Project
+
+The `defaults.project` setting determines how your instances are named and organized:
+- **project** - A project identifier used for organizing instances (e.g., "vllm-omni", "sglang-slime")
+- **hostname_prefix** - Automatically set to `{project}-{gpu_type}` (e.g., "vllm-omni-B300")
+
+When you deploy a new instance, it will be named with the hostname prefix followed by a timestamp.
+
+### Switching Projects
+
+To switch to a different project during a session, use the `/verda-project` command:
+
+```
+/verda-project
+```
+
+This will:
+1. Show your current project and hostname prefix
+2. Ask which project you want to switch to
+3. Update the config.yaml with the new project name and hostname prefix
+
+You can also provide the project name directly:
+
+```
+/verda-project my-new-project
+```
+
+The hostname prefix will automatically be updated to `{project}-B300`.
+
 ### Environment Variables
 
 You can also set the config path via environment variable:
